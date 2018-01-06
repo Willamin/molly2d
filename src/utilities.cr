@@ -1,6 +1,9 @@
 require "sdl/ttf"
+require "sdl/hint"
 
-SDL::TTF.init; at_exit { SDL::TTF.quit }
+SDL::TTF.init
+at_exit { SDL::TTF.quit }
+SDL.set_hint(SDL::Hint::RENDER_VSYNC, 1)
 
 module Molly2d
   VERSION   = YAML.parse(File.read("shard.yml"))["version"]

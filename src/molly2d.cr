@@ -63,17 +63,7 @@ module Molly2d
 
       m.update_game(delta.total_seconds)
 
-      text_to_draw = <<-TEXT
-        now: #{now}
-        delta.total_seconds: #{delta.total_seconds}
-        TEXT
-
-      m.draw_game do
-        m.renderer.draw_color = red
-        x = 20
-        y = m.window.height - (text_to_draw.lines.size * 20 + 20)
-        m.draw_text(x, y, text_to_draw)
-      end
+      m.draw_game
 
       break if m.should_quit
     end
