@@ -4,7 +4,8 @@ require "sdl/ttf"
 require "./*"
 
 module Molly2d
-  FPS_MAX = 60
+  FPS_MAX  = 60
+  MAX_TIME = Time::Span.new(nanoseconds: (1.0/FPS_MAX * 1_000_000_000).to_i)
 
   class Molly
     property should_quit
@@ -54,6 +55,10 @@ module Molly2d
     loop do |i|
       now = Time.monotonic
       delta = now - last_loop
+
+      if delta < MAX_TIME
+        sleep(MAX_TIME - delta)
+      end
       last_loop = now
 
       m.update_game(delta.total_seconds)
@@ -65,7 +70,9 @@ module Molly2d
 
       m.draw_game do
         m.renderer.draw_color = red
-        m.draw_text(20, m.window.height - (text_to_draw.lines.size * 20 + 20), text_to_draw)
+        x = 20
+        y = m.window.height - (text_to_draw.lines.size * 20 + 20)
+        m.draw_text(x, y, text_to_draw)
       end
 
       break if m.should_quit
