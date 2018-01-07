@@ -27,8 +27,12 @@ module Molly2d
       end
     end
 
-    def set_color(color)
+    def set_color(color : SDL::Color)
       @renderer.draw_color = color
+    end
+
+    def set_color(color : Molly2d::Color)
+      set_color(SDL::Color.new(color.r, color.g, color.b))
     end
 
     def handle_event(event)
@@ -60,6 +64,19 @@ module Molly2d
       state[key.to_i] == 1
     end
   end
+
+  class Color
+    def initialize(@r : Int32, @g : Int32, @b : Int32)
+      {% for c in %w(r g b) %}
+      unless (0..255).includes?(@{{c.id}})
+        raise "Invalid color level: {{c.id}} = #{@{{c.id}}}"
+      end
+      {% end %}
+    end
+
+    getter r, g, b
+  end
 end
 
 alias Key = LibSDL::Scancode
+alias Color = Molly2d::Color
