@@ -37,10 +37,10 @@ TODO: Write development instructions here
 - [[your-github-name]](https://github.com/[your-github-name]) Will Lewis - creator, maintainer
 
 ## Roadmap
-1. [ ] drawing basic rectangles
-2. [ ] game loop timing
-3. [ ] drawing basic text
-4. [ ] checking keyboard state
+1. [x] drawing basic rectangles
+2. [x] game loop timing
+3. [x] drawing basic text
+4. [x] checking keyboard state
 5. [ ] drawing background images
 6. [ ] drawing sprites
 7. [ ] playing sounds
