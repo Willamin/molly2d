@@ -47,9 +47,6 @@ module Molly2d
     m = Molly.new
     m.load
 
-    white = SDL::Color[255, 255, 255, 255]
-    red = SDL::Color[255, 0, 0, 255]
-
     last_loop = Time.monotonic
 
     loop do |i|
