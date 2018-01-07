@@ -54,5 +54,12 @@ module Molly2d
     def quit
       @should_quit = true
     end
+
+    def keyboard_pressed?(key)
+      state = LibSDL.get_keyboard_state(nil)
+      state[key.to_i] == 1
+    end
   end
 end
+
+alias Key = LibSDL::Scancode
