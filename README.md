@@ -9,7 +9,7 @@ Add this to your application's `shard.yml`:
 ```yaml
 dependencies:
   molly2d:
-    github: [your-github-name]/molly2d
+    github: willamin/molly2d
 ```
 
 ## Usage
@@ -26,7 +26,7 @@ TODO: Write development instructions here
 
 ## Contributing
 
-1. Fork it ( https://github.com/[your-github-name]/molly2d/fork )
+1. Fork it ( https://github.com/willamin/molly2d/fork )
 2. Create your feature branch (git checkout -b my-new-feature)
 3. Commit your changes (git commit -am 'Add some feature')
 4. Push to the branch (git push origin my-new-feature)
@@ -34,7 +34,7 @@ TODO: Write development instructions here
 
 ## Contributors
 
-- [[your-github-name]](https://github.com/[your-github-name]) Will Lewis - creator, maintainer
+- [[Willamin]](https://github.com/willamin) Will Lewis - creator, maintainer
 
 ## Roadmap
 1. [x] drawing basic rectangles
