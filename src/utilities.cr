@@ -1,7 +1,10 @@
 require "sdl/ttf"
 require "sdl/hint"
+require "sdl/image"
 
+SDL.init(SDL::Init::VIDEO)
 SDL::TTF.init
+SDL::IMG.init(SDL::IMG::Init::PNG)
 at_exit { SDL::TTF.quit }
 SDL.set_hint(SDL::Hint::RENDER_VSYNC, 1)
 
