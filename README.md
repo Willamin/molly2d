@@ -1,6 +1,6 @@
 # molly2d
 
-TODO: Write a description here
+A löve-inspired 2d game framework that gets out of your way.
 
 ## Installation
 
@@ -35,3 +35,14 @@ TODO: Write development instructions here
 ## Contributors
 
 - [[your-github-name]](https://github.com/[your-github-name]) Will Lewis - creator, maintainer
+
+## Roadmap
+1. [ ] drawing basic rectangles
+2. [ ] game loop timing
+3. [ ] drawing basic text
+4. [ ] checking keyboard state
+5. [ ] drawing background images
+6. [ ] drawing sprites
+7. [ ] playing sounds
+8. [ ] checking mouse state
+9. [ ] window state and properties
