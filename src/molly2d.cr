@@ -12,7 +12,7 @@ module Molly2d
     @should_quit : Bool
 
     property :background, :window, :renderer
-    @background : SDL::Color = SDL::Color.new(210, 210, 200)
+    @background : SDL::Color | SDL::Surface = SDL::Color.new(210, 210, 200)
     @window : SDL::Window
     @renderer : SDL::Renderer
 

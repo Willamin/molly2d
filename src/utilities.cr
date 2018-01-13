@@ -30,6 +30,23 @@ module Molly2d
       end
     end
 
+    def draw_sprite(x, y, surface : SDL::Texture, stretch_x = 1, stretch_y = 1, flip_x = false, flip_y = false)
+      angle = 0
+      flip = LibSDL::RendererFlip::NONE
+      if flip_x && flip_y
+        flip = LibSDL::RendererFlip::NONE
+        angle = 180
+      else
+        if flip_x
+          flip = LibSDL::RendererFlip::HORIZONTAL
+        end
+        if flip_y
+          flip = LibSDL::RendererFlip::VERTICAL
+        end
+      end
+      @renderer.copy(surface, dstrect: SDL::Rect[x, y, surface.width * stretch_x, surface.height * stretch_y], angle: angle, flip: flip)
+    end
+
     def set_color(color : SDL::Color)
       @renderer.draw_color = color
     end
@@ -50,8 +67,13 @@ module Molly2d
     end
 
     def clear
-      @renderer.draw_color = @background
+      if (b = @background).is_a?(SDL::Color)
+        @renderer.draw_color = b
+      end
       @renderer.clear
+      if (b = @background).is_a?(SDL::Surface)
+        @renderer.copy(b, dstrect: SDL::Rect[0, 0, @window.width, @window.height])
+      end
     end
 
     def render
