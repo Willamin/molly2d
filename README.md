@@ -41,8 +41,8 @@ TODO: Write development instructions here
 2. [x] game loop timing
 3. [x] drawing basic text
 4. [x] checking keyboard state
-5. [ ] drawing background images
-6. [ ] drawing sprites
+5. [x] drawing background images
+6. [x] drawing sprites
 7. [ ] playing sounds
 8. [ ] checking mouse state
 9. [ ] window state and properties
