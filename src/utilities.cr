@@ -26,7 +26,7 @@ module Molly2d
     def draw_text(x, y, text, font = FONT_HELV)
       text.split("\n").each_with_index do |linetext, index|
         unless linetext.size == 0
-          surface = font.render_shaded(linetext, @renderer.draw_color, @background)
+          surface = font.render_blended(linetext, @renderer.draw_color, @background)
           @renderer.copy(surface, dstrect: SDL::Rect[x, y + font.line_skip * index, surface.width, surface.height])
         end
       end
@@ -40,12 +40,11 @@ module Molly2d
       end
     end
 
-    def draw_sprite(x, y, surface : SDL::Texture?, stretch_x = 1, stretch_y = 1, flip_x = false, flip_y = false)
+    def draw_sprite(x, y, surface : SDL::Texture?, stretch_x = 1, stretch_y = 1, flip_x = false, flip_y = false, angle = 0)
       if surface.nil?
         return
       end
 
-      angle = 0
       flip = LibSDL::RendererFlip::NONE
       if flip_x && flip_y
         flip = LibSDL::RendererFlip::NONE

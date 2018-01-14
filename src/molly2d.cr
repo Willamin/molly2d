@@ -18,7 +18,7 @@ module Molly2d
 
     def initialize
       at_exit { SDL.quit }
-      @window = SDL::Window.new("", 800, 600)
+      @window = SDL::Window.new("", 15.tiles, 15.tiles)
       @window.bordered = true
       @renderer = SDL::Renderer.new(@window)
       @should_quit = false
