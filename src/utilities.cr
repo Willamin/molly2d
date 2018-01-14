@@ -13,6 +13,16 @@ module Molly2d
   FONT_HELV = SDL::TTF::Font.new("/System/Library/Fonts/Monaco.dfont", 16)
 
   class Molly
+    @textures : Hash(String, SDL::Texture?) = Hash(String, SDL::Texture?).new
+
+    def load_sprite(path : String)
+      if @textures[path]?
+        @textures[path]
+      else
+        @textures[path] = SDL::IMG.load(path, @renderer)
+      end
+    end
+
     def draw_text(x, y, text, font = FONT_HELV)
       text.split("\n").each_with_index do |linetext, index|
         unless linetext.size == 0
@@ -30,7 +40,11 @@ module Molly2d
       end
     end
 
-    def draw_sprite(x, y, surface : SDL::Texture, stretch_x = 1, stretch_y = 1, flip_x = false, flip_y = false)
+    def draw_sprite(x, y, surface : SDL::Texture?, stretch_x = 1, stretch_y = 1, flip_x = false, flip_y = false)
+      if surface.nil?
+        return
+      end
+
       angle = 0
       flip = LibSDL::RendererFlip::NONE
       if flip_x && flip_y
