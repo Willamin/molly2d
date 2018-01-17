@@ -43,6 +43,7 @@ TODO: Write development instructions here
 4. [x] checking keyboard state
 5. [x] drawing background images
 6. [x] drawing sprites
-7. [ ] playing sounds
-8. [ ] checking mouse state
-9. [ ] window state and properties
+7. [ ] window state and properties
+8. [ ] playing sounds
+9. [ ] checking mouse state
+
