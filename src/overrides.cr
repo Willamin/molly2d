@@ -1,5 +1,5 @@
 module Molly2d
-  class Molly
+  module Molly
     def load
       # override in game
     end
