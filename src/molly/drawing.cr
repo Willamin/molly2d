@@ -52,8 +52,8 @@ module Molly2d
     end
 
     def clear
-      if (b = Molly.background).is_a?(SDL::Color)
-        Molly.renderer.draw_color = b
+      if (b = Molly.background).is_a?(Color)
+        Molly.renderer.draw_color = b.to_sdl
       end
       Molly.renderer.clear
       if (b = Molly.background).is_a?(SDL::Surface)
@@ -65,12 +65,8 @@ module Molly2d
       Molly.renderer.present
     end
 
-    def set_color(color : SDL::Color)
-      Molly.renderer.draw_color = color
-    end
-
     def set_color(color : Molly2d::Color)
-      Molly.set_color(SDL::Color.new(color.r, color.g, color.b))
+      Molly.renderer.draw_color = color.to_sdl
     end
   end
 
@@ -84,6 +80,10 @@ module Molly2d
     end
 
     getter r, g, b
+
+    def to_sdl : SDL::Color
+      SDL::Color.new(@r, @g, @b)
+    end
   end
 end
 

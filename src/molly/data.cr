@@ -11,8 +11,6 @@ module Molly2d
 
         SDL.set_hint(SDL::Hint::RENDER_VSYNC, 1)
 
-        @background = SDL::Color.new(210, 210, 200)
-        @textures = Hash(String, SDL::Texture?).new
         @window = SDL::Window.new("", 800, 600)
         @renderer = SDL::Renderer.new(@window)
       end
@@ -57,8 +55,8 @@ module Molly2d
     end
 
     data should_quit : Bool { false }
-    data background : SDL::Color | SDL::Surface
-    data textures : Hash(String, SDL::Texture?)
+    data background : Color | SDL::Surface { Color.new(210, 210, 200) }
+    data textures : Hash(String, SDL::Texture?) { Hash(String, SDL::Texture?).new }
     data window : SDL::Window
     data renderer : SDL::Renderer
   end
