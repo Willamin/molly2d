@@ -4,13 +4,6 @@ require "sdl/ttf"
 require "./molly/*"
 require "./overrides"
 
-SDL.init(SDL::Init::VIDEO)
-SDL::IMG.init(SDL::IMG::Init::PNG)
-SDL::TTF.init
-at_exit { SDL.quit }
-
-SDL.set_hint(SDL::Hint::RENDER_VSYNC, 1)
-
 module Molly2d
   FPS_MAX  = 60
   MAX_TIME = Time::Span.new(nanoseconds: (1.0/FPS_MAX * 1_000_000_000).to_i)
@@ -19,8 +12,6 @@ module Molly2d
     extend self
 
     def run
-      Molly.window = SDL::Window.new("", 800, 600)
-      Molly.renderer = SDL::Renderer.new(Molly.window)
       Molly.window.bordered = true
       Molly.load
 
@@ -56,3 +47,4 @@ module Molly2d
 end
 
 alias Molly = Molly2d::Molly
+Molly.run

@@ -3,59 +3,44 @@ module Molly2d
 
   module Molly
     class Data
-      property should_quit : Bool
-      property background : SDL::Color | SDL::Surface
-      property window : SDL::Window?
-      property renderer : SDL::Renderer?
-      property textures : Hash(String, SDL::Texture?)
-
       def initialize
+        SDL.init(SDL::Init::VIDEO)
+        SDL::IMG.init(SDL::IMG::Init::PNG)
+        SDL::TTF.init
+        at_exit { SDL.quit }
+
+        SDL.set_hint(SDL::Hint::RENDER_VSYNC, 1)
+
         @background = SDL::Color.new(210, 210, 200)
         @textures = Hash(String, SDL::Texture?).new
         @should_quit = false
+        @window = SDL::Window.new("", 800, 600)
+        @renderer = SDL::Renderer.new(@window)
       end
     end
 
     extend self
 
-    def should_quit
-      Molly2d::DATA.should_quit
+    macro data(*names)
+      {% for name in names %}
+      class Data
+        property {{name.var.id}} : {{name.type}}
+      end
+
+      def {{name.var.id}}
+        Molly2d::DATA.{{name.var.id}}
+      end
+
+      def {{name.var.id}}=(a)
+        Molly2d::DATA.{{name.var.id}} = a
+      end
+      {% end %}
     end
 
-    def should_quit=(a)
-      Molly2d::DATA.should_quit = a
-    end
-
-    def background
-      Molly2d::DATA.background
-    end
-
-    def background=(a)
-      Molly2d::DATA.background = a
-    end
-
-    def window
-      Molly2d::DATA.window.not_nil!
-    end
-
-    def window=(a)
-      Molly2d::DATA.window = a
-    end
-
-    def renderer
-      Molly2d::DATA.renderer.not_nil!
-    end
-
-    def renderer=(a)
-      Molly2d::DATA.renderer = a
-    end
-
-    def textures
-      Molly2d::DATA.textures
-    end
-
-    def textures=(a)
-      Molly2d::DATA.textures = a
-    end
+    data should_quit : Bool
+    data background : SDL::Color | SDL::Surface
+    data textures : Hash(String, SDL::Texture?)
+    data window : SDL::Window
+    data renderer : SDL::Renderer
   end
 end
