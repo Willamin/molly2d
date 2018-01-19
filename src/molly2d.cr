@@ -2,6 +2,7 @@ require "sdl"
 require "sdl/ttf"
 
 require "./molly/*"
+require "./molly/drawing/*"
 require "./overrides"
 
 module Molly2d
