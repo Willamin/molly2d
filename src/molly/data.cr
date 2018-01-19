@@ -13,7 +13,6 @@ module Molly2d
 
         @background = SDL::Color.new(210, 210, 200)
         @textures = Hash(String, SDL::Texture?).new
-        @should_quit = false
         @window = SDL::Window.new("", 800, 600)
         @renderer = SDL::Renderer.new(@window)
       end
@@ -21,23 +20,43 @@ module Molly2d
 
     extend self
 
-    macro data(*names)
+    macro data(*names, &block)
       {% for name in names %}
-      class Data
-        property {{name.var.id}} : {{name.type}}
-      end
+        {% if name.is_a?(TypeDeclaration) %}
+          class Data
+            {% if block %}
+              property {{name.var.id}} : {{name.type}} = {{yield}}
+            {% else %}
+              property {{name.var.id}} : {{name.type}}
+            {% end %}
+          end
 
-      def {{name.var.id}}
-        Molly2d::DATA.{{name.var.id}}
-      end
+          def {{name.var.id}}
+            Molly2d::DATA.{{name.var.id}}
+          end
 
-      def {{name.var.id}}=(a)
-        Molly2d::DATA.{{name.var.id}} = a
-      end
+          def {{name.var.id}}=(a)
+            Molly2d::DATA.{{name.var.id}} = a
+          end
+
+        {% elsif name.is_a?(Assign) %}
+          class Data
+            property {{name.target.id}} = {{name.value}}
+          end
+
+          def {{name.target.id}}
+            Molly2d::DATA.{{name.target.id}}
+          end
+
+          def {{name.target.id}}=(a)
+            Molly2d::DATA.{{name.target.id}} = a
+          end
+
+        {% end %}
       {% end %}
     end
 
-    data should_quit : Bool
+    data should_quit : Bool { false }
     data background : SDL::Color | SDL::Surface
     data textures : Hash(String, SDL::Texture?)
     data window : SDL::Window
