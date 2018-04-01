@@ -4,7 +4,7 @@ module Molly2d
   module Molly
     class Data
       def initialize
-        SDL.init(SDL::Init::VIDEO)
+        SDL.init(SDL::Init::VIDEO | SDL::Init::AUDIO)
         SDL::IMG.init(SDL::IMG::Init::PNG)
         SDL::TTF.init
         at_exit { SDL.quit }
@@ -56,7 +56,6 @@ module Molly2d
 
     data should_quit : Bool { false }
     data background : Color | SDL::Surface { Color.new(210, 210, 200) }
-    data textures : Hash(String, SDL::Texture?) { Hash(String, SDL::Texture?).new }
     data window : SDL::Window
     data renderer : SDL::Renderer
   end

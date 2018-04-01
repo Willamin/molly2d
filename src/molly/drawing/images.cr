@@ -4,6 +4,8 @@ require "sdl/hint"
 
 module Molly2d
   module Molly
+    data textures : Hash(String, SDL::Texture?) { Hash(String, SDL::Texture?).new }
+
     def load_sprite(path : String)
       if Molly.textures[path]?
         Molly.textures[path]
