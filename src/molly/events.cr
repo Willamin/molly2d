@@ -5,7 +5,8 @@ module Molly2d
     def handle_event(event)
       case event
       when SDL::Event::Window
-        if event.event == 14
+        case event.event
+        when 14
           Molly.quit
         end
       when SDL::Event::Quit

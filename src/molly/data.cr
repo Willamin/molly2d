@@ -11,7 +11,7 @@ module Molly2d
 
         SDL.set_hint(SDL::Hint::RENDER_VSYNC, 1)
 
-        @window = SDL::Window.new("", 800, 600)
+        @window = SDL::Window.new("", 800, 600, LibSDL::WindowPosition::UNDEFINED, LibSDL::WindowPosition::UNDEFINED, LibSDL::WindowFlags::RESIZABLE)
         @renderer = SDL::Renderer.new(@window)
       end
     end

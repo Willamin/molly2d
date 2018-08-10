@@ -17,7 +17,7 @@ module Molly2d
     def draw_text(x, y, text, font = FONT)
       text.split("\n").each_with_index do |linetext, index|
         unless linetext.size == 0
-          surface = font.render_blended(linetext, Molly.renderer.draw_color, Molly.background)
+          surface = font.render_blended(linetext, Molly.renderer.draw_color)
           Molly.renderer.copy(surface, dstrect: SDL::Rect[x, y + font.line_skip * index, surface.width, surface.height])
         end
       end
