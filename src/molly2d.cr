@@ -17,7 +17,7 @@ module Molly2d
       Molly.load
 
       last_loop = Time.monotonic
-      loop do |i|
+      loop do
         now = Time.monotonic
         delta = now - last_loop
 
