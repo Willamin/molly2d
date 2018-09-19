@@ -1,4 +1,4 @@
-![](logo/logo.png)
+<div align="center">![](logo/logo.png)</div>
 # molly2d
 
 A löve-inspired 2d game framework that gets out of your way.
