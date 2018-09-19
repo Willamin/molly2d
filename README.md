@@ -1,4 +1,4 @@
-<div align="center"><img src="logo/logo.png"></div>
+<div align="center"><img src="logo/v2.png"></div>
 
 # molly2d
 
