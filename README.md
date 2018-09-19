@@ -1,3 +1,4 @@
+![](logo.svg)
 # molly2d
 
 A löve-inspired 2d game framework that gets out of your way.
