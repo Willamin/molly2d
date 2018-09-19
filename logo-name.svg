@@ -32,7 +32,7 @@
 
   <style>
     .big { 
-        font: 80px san-serif;
+        font: 80px sans-serif;
     }
   </style>
 
