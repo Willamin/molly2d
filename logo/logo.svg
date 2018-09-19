@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="217" height="217">
-  <path stroke-linecap="round" stroke-width="3" stroke="black" fill="none" d="
+  <path stroke-linecap="round" stroke-width="3" stroke="white" fill="none" d="
   M103 11
   a10 10 0 0 1 10 0
   l76 44
@@ -15,17 +15,17 @@
   l76 -44
   "></path>
 
-  <path stroke-linecap="round" stroke-width="3" stroke="black" fill="none" d="
+  <path stroke-linecap="round" stroke-width="3" stroke="white" fill="none" d="
   M109 20
   l75 44
   "></path>
 
-  <path stroke-linecap="round" stroke-width="3" stroke="black" fill="none" d="
+  <path stroke-linecap="round" stroke-width="3" stroke="white" fill="none" d="
   M109 194
   l75 -44
   "></path>
 
-  <path stroke-linecap="round" stroke-width="3" stroke="black" fill="none" d="
+  <path stroke-linecap="round" stroke-width="3" stroke="white" fill="none" d="
   M32 64
   l0 88
   "></path>
