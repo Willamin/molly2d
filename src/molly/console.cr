@@ -3,6 +3,16 @@ class Molly2d::Console
 
   alias SProc = Proc(String, Nil)
 
+  class Error < Exception; end
+
+  class UnrecognizedInput < Error
+    getter input : String
+
+    def initialize(@input)
+      @message = "unrecognized input: #{@input}"
+    end
+  end
+
   @commands = Hash(String, SProc).new
   @prompt = "> "
 
@@ -19,8 +29,9 @@ class Molly2d::Console
           break
         end
       end
-
-      puts "unrecognized input: #{input}" unless found
+      raise UnrecognizedInput.new(input) unless found
+    rescue ex : Error
+      puts ex
     end
   end
 
