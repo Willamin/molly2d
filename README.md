@@ -50,3 +50,4 @@ TODO: Write development instructions here
   8a. [x] one-shot sounds
   8b. [ ] background music
 9. [ ] checking mouse state
+10. [ ] checking gamepad state
