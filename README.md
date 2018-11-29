@@ -46,8 +46,8 @@ TODO: Write development instructions here
 5. [x] drawing background images
 6. [x] drawing sprites
 7. [ ] window state and properties
-8. [ ] playing sounds
+8. [x] playing sounds
   8a. [x] one-shot sounds
-  8b. [ ] background music
+  8b. [x] background music
 9. [ ] checking mouse state
 10. [ ] checking gamepad state
