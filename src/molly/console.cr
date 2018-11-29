@@ -43,6 +43,7 @@ end
 module Molly2d::Molly
   def setup_console
     c = Molly2d::Console.new
+    at_exit { puts "exiting..." }
     with c yield
     spawn do
       c.listen
