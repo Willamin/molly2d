@@ -1,12 +1,13 @@
 require "sdl"
 require "sdl/mix"
 
-# SDL::Mix.init(SDL::Mix::Init::FLAC); at_exit { SDL::Mix.quit }
+at_exit { SDL::Mix.quit }
 SDL::Mix.open
 
 module Molly2d
   module Molly
     data samples : Hash(String, SDL::Mix::Sample?) { Hash(String, SDL::Mix::Sample?).new }
+    data musics : Hash(String, SDL::Mix::Music?) { Hash(String, SDL::Mix::Music?).new }
 
     def load_sound(path : String)
       if Molly.samples[path]?
@@ -19,6 +20,20 @@ module Molly2d
     def play_sound(sample)
       sample.try do |sample|
         SDL::Mix::Channel.play(sample)
+      end
+    end
+
+    module Music
+      extend self
+
+      def play(path : String)
+        case e = File.extname(path)
+        when ".wav"
+          SDL::Mix.open(LibMix::MusicType::MUS_WAV)
+          SDL::Mix::Music.new(path).tap(&.play)
+        else
+          raise "Unsupported filetype: #{e}"
+        end
       end
     end
   end
