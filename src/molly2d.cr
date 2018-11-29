@@ -6,8 +6,23 @@ require "./molly/drawing/*"
 require "./overrides"
 
 module Molly2d
-  FPS_MAX  = 60
-  MAX_TIME = Time::Span.new(nanoseconds: (1.0/FPS_MAX * 1_000_000_000).to_i)
+  FPS_MAX   = 60
+  MAX_TIME  = Time::Span.new(nanoseconds: (1.0/FPS_MAX * 1_000_000_000).to_i)
+  MAC_FIXER = MacFixer.new
+
+  struct MacFixer
+    # this should be removable after this bugfix is released:
+    # https://bugzilla.libsdl.org/show_bug.cgi?id=4272
+    @first_loop = true
+
+    def fix_render
+      if @first_loop
+        Molly.window.bordered = false
+        Molly.window.bordered = true
+        @first_loop = false
+      end
+    end
+  end
 
   module Molly
     extend self
@@ -29,6 +44,8 @@ module Molly2d
         Molly.update_game(delta.total_seconds)
 
         Molly.draw_game
+
+        MAC_FIXER.fix_render
 
         break if Molly.should_quit
       end
