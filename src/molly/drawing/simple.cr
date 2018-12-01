@@ -14,6 +14,17 @@ module Molly2d
       end
     end
 
+    def text_width(text, font = FONT)
+      text.split("\n").map_with_index do |linetext, index|
+        if linetext.size == 0
+          return 0
+        end
+
+        surface = font.render_blended(linetext, Molly.renderer.draw_color)
+        surface.width
+      end.max
+    end
+
     def draw_text(x, y, text, font = FONT)
       text.split("\n").each_with_index do |linetext, index|
         unless linetext.size == 0
