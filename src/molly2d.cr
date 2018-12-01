@@ -65,4 +65,3 @@ module Molly2d
 end
 
 alias Molly = Molly2d::Molly
-Molly.run
