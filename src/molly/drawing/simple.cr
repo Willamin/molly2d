@@ -4,8 +4,6 @@ require "sdl/hint"
 
 module Molly2d
   module Molly
-    FONT = SDL::TTF::Font.new("/System/Library/Fonts/Monaco.dfont", 16)
-
     def draw_rect(x, y, w, h, fill = true)
       if fill
         Molly.renderer.fill_rect(x, y, w, h)
@@ -14,7 +12,7 @@ module Molly2d
       end
     end
 
-    def text_width(text, font = FONT)
+    def text_width(text, font)
       text.split("\n").map_with_index do |linetext, index|
         if linetext.size == 0
           return 0
@@ -25,7 +23,7 @@ module Molly2d
       end.max
     end
 
-    def draw_text(x, y, text, font = FONT)
+    def draw_text(x, y, text, font)
       text.split("\n").each_with_index do |linetext, index|
         unless linetext.size == 0
           surface = font.render_blended(linetext, Molly.renderer.draw_color)
